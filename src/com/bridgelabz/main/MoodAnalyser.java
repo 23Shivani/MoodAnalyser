@@ -12,17 +12,23 @@ public class MoodAnalyser {
 	}
 
 
-	public String analyseMood(String message) {
+	public String analyseMood() throws MoodAnalyserException {
 
 		try {
-			if (message.contains("SAD"))
+			if (message.equals(null)) {
+				throw new MoodAnalyserException(MoodAnalyserException.ExceptionTypes.NULL_POINTER_EXCEPTION);
+			} else if (message.isEmpty()) {
+				throw new MoodAnalyserException(MoodAnalyserException.ExceptionTypes.EMPTY_STRING_EXCEPTION);
+			}
+			if (message.contains("SAD")) {
 				return "SAD";
-			else
+			}
 				return "HAPPY";
-		} catch (NullPointerException e) {
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
 			return "HAPPY";
 		}
-		
 
 	}
 
